@@ -1,6 +1,6 @@
 # YaMDb.
 
-![main workflow](https://github.com/vargg/yamdb_final/actions/workflows/yamdb_workflow/badge.svg)
+![main workflow](https://github.com/vargg/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg)
 
 ## Описание.
 API сервис рецензий. Пользователи оставляют свои отзывы к произведениям и выставляют оценку о 1 до 10. Из всех оценок произведения высчитывается средняя оценка. Произведения делятся на категории ("Фильмы", "Музыка" и т.п.), каждому произведению может быть присвоен жанр из списка предустановленных.
