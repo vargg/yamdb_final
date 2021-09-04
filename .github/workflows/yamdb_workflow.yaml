@@ -5,13 +5,16 @@ on: [push]
 jobs:
   tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
       run: |
@@ -19,9 +22,8 @@ jobs:
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
         pip install -r requirements.txt
 
-    - name: Test with flake8 and django tests
+    - name: Test with flake8 and pytest
       run: |
-        # запуск проверки проекта по flake8
         python -m flake8
         pytest
 
@@ -29,6 +31,7 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: tests
+    if: ${{ github.ref == 'refs/heads/master' }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -48,6 +51,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
+    if: ${{ github.ref == 'refs/heads/master' }}
     steps:
     - name: executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
@@ -65,8 +69,8 @@ jobs:
           touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
           echo DB_NAME=${{ secrets.DB_NAME }} >> .env
-          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
-          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+          echo POSTGRES_USER=${{ secrets.DB_USER }} >> .env
+          echo POSTGRES_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env
           echo DB_PORT=${{ secrets.DB_PORT }} >> .env
           echo DEBUG=${{ secrets.DEBUG }} >> .env
@@ -80,6 +84,7 @@ jobs:
   send_message:
     runs-on: ubuntu-latest
     needs: deploy
+    if: ${{ github.ref == 'refs/heads/master' }}
     steps:
     - name: send message
       uses: appleboy/telegram-action@master
