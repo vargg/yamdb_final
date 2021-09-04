@@ -8,7 +8,7 @@ services:
     env_file:
       - ./.env
   web:
-    build: .
+    image: simarglwp/yamdb:latest
     restart: always
     entrypoint: ./entrypoint.sh
     volumes:
