@@ -1,5 +1,5 @@
 # YaMDb.
-https://178.154.202.20
+http://178.154.202.20
 
 ![main workflow](https://github.com/vargg/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg)
 
