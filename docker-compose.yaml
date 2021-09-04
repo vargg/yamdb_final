@@ -3,12 +3,14 @@ version: '3.8'
 services:
   db:
     image: postgres:12.4
+    container_name: db
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
   web:
     image: simarglwp/yamdb:latest
+    container_name: web
     restart: always
     volumes:
       - static_value:/code/static/
@@ -19,6 +21,7 @@ services:
       - ./.env
   nginx:
     image: nginx:1.19.3
+    container_name: nginx
     ports:
       - "80:80"
     volumes:
