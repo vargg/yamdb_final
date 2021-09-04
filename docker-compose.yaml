@@ -10,7 +10,6 @@ services:
   web:
     image: simarglwp/yamdb:latest
     restart: always
-    entrypoint: ./entrypoint.sh
     volumes:
       - static_value:/code/static/
       - media_value:/code/media/
