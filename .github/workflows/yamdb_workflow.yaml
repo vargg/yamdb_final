@@ -13,12 +13,9 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
-        stack_file_name: docker-compose.yaml
         script: |
-          sudo docker pull simarglwp/yamdb
-          sudo docker-compose stop
-          sudo docker-compose rm web
-          sudo docker-compose up -d
+          sudo docker-compose down
+          sudo docker-compose up --build -d
 
   send_message:
     runs-on: ubuntu-latest
