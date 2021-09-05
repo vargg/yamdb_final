@@ -4,7 +4,7 @@ http://178.154.202.20
 ![main workflow](https://github.com/vargg/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg)
 
 ## Стэк
-[Python](https://www.python.org/) v.3.9, [Django](https://www.djangoproject.com/) v.3.0.5, [Django REST framework](https://www.django-rest-framework.org/) v.3.11.0, [DRF simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/) v.4.3.0, [PostgreSQL](https://www.postgresql.org) v.12.4, [Docker](https://www.docker.com/) v.20.10.8.
+[Python](https://www.python.org/) v.3.8.5, [Django](https://www.djangoproject.com/) v.3.0.5, [Django REST framework](https://www.django-rest-framework.org/) v.3.11.0, [DRF simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/) v.4.3.0, [PostgreSQL](https://www.postgresql.org) v.12.4, [Docker](https://www.docker.com/) v.20.10.8.
 
 ## Описание.
 API сервис рецензий. Пользователи оставляют свои отзывы к произведениям и выставляют оценку о 1 до 10. Из всех оценок произведения высчитывается средняя оценка. Произведения делятся на категории (Фильмы, Музыка, Книги и т.п.), каждому произведению может быть присвоен жанр из списка предустановленных.
