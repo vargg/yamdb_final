@@ -30,6 +30,7 @@ response
 ```
 - получение всех оставленных рецензий:
 request `api/v1/titles/<title_id>/reviews/ [GET]`
+
 response
 ```json
 [
